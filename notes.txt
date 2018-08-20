@@ -1,0 +1,8 @@
+If the user is signed in, and then you close the server and reopen it. 
+
+Then navigate to localhost:3000/. The server will throw an error saying: 
+
+"TypeError: Cannot read property 'credits' of undefined
+[0]     at app.get (/home/elisha/Desktop/FullstackReactCode/server/routes/authRoutes.js:25:9)
+"
+

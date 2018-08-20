@@ -21,12 +21,6 @@ export const handleToken = token => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitSurvey = (values, history) => async dispatch => {
-  const res = await axios.post('/api/surveys', values);
-
-  history.push('/surveys');
-  dispatch({ type: FETCH_USER, payload: res.data });
-};
 
 export const fetchSurveys = () => async dispatch => {
   const res = await axios.get('/api/surveys');
@@ -42,33 +36,29 @@ export const fetchPosts = () => async dispatch => {
   dispatch({ type: FETCH_POSTS, payload: res.data });
 }
 
-export function createPost(values, callback) {
-  const request = axios
-    .post(`${ROOT_URL}/posts${API_KEY}`, values)
-    .then(() => callback());
+export const submitSurvey = (values, history) => async dispatch => {
+  const res = await axios.post('/api/surveys', values);
 
-  return {
-    type: CREATE_POST,
-    payload: request
-  };
+  history.push('/surveys');
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const createPost = (values, callback) => async dispatch => {
+  const res = await axios.post(`${ROOT_URL}/posts${API_KEY}`, values);
+  callback();
+
+  dispatch({ type: CREATE_POST, payload: res.data });
 }
 
-export function fetchPost(id) {
-  const request = axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`);
+export const fetchPost = id => async dispatch => {
+  const res = await axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`);
 
-  return {
-    type: FETCH_POST,
-    payload: request
-  };
+  dispatch({ type: FETCH_POST, payload: res.data });
 }
 
-export function deletePost(id, callback) {
-  const request = axios
-    .delete(`${ROOT_URL}/posts/${id}${API_KEY}`)
-    .then(() => callback());
+export const deletePost = (id, callback) => async dispatch => {
+  const res = await axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`)
+  callback();
 
-  return {
-    type: DELETE_POST,
-    payload: id
-  };
+  dispatch({ type: DELETE_POST, payload: id });
 }

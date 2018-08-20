@@ -22,6 +22,7 @@ module.exports = app => {
   });
 
   app.get('/api/current_user', (req, res) => {
+    req.user.credits++;
     res.send(req.user);
   });
 };

@@ -35,13 +35,11 @@ export const fetchSurveys = () => async dispatch => {
 };
 
 
-export function fetchPosts() {
-  const request = axios.get(`${ROOT_URL}/posts${API_KEY}`);
+export const fetchPosts = () => async dispatch => {
+  const res = await axios.get(`${ROOT_URL}/posts${API_KEY}`);
+  console.log('these are the posts:', res)
 
-  return {
-    type: FETCH_POSTS,
-    payload: request
-  };
+  dispatch({ type: FETCH_POSTS, payload: res.data });
 }
 
 export function createPost(values, callback) {

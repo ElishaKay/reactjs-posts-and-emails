@@ -23,8 +23,7 @@ class App extends Component {
           <div>
               <Header />
               <Route exact path="/" component={PostsIndex} />
-              <Route path="/" component={PostsIndex} />
-              <Route exact path="/surveys" component={Dashboard} />
+              <Route path="/surveys" component={Dashboard} />
               <Route path="/surveys/new" component={SurveyNew} />
               <Route path="/posts/new" component={PostsNew} />
               <Route path="/posts/:id" component={PostsShow} />

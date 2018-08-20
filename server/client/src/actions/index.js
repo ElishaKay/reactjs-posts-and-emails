@@ -1,10 +1,6 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_SURVEYS } from './types';
-
-export const FETCH_POSTS = "fetch_posts";
-export const FETCH_POST = "fetch_post";
-export const CREATE_POST = "create_post";
-export const DELETE_POST = "delete_post";
+import { FETCH_USER, FETCH_SURVEYS, FETCH_POSTS, FETCH_POST,
+        CREATE_POST, DELETE_POST } from './types';
 
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
@@ -21,11 +17,17 @@ export const handleToken = token => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-
 export const fetchSurveys = () => async dispatch => {
   const res = await axios.get('/api/surveys');
 
   dispatch({ type: FETCH_SURVEYS, payload: res.data });
+};
+
+export const submitSurvey = (values, history) => async dispatch => {
+  const res = await axios.post('/api/surveys', values);
+
+  history.push('/surveys');
+  dispatch({ type: FETCH_USER, payload: res.data });
 };
 
 
@@ -36,12 +38,7 @@ export const fetchPosts = () => async dispatch => {
   dispatch({ type: FETCH_POSTS, payload: res.data });
 }
 
-export const submitSurvey = (values, history) => async dispatch => {
-  const res = await axios.post('/api/surveys', values);
 
-  history.push('/surveys');
-  dispatch({ type: FETCH_USER, payload: res.data });
-};
 
 export const createPost = (values, callback) => async dispatch => {
   const res = await axios.post(`${ROOT_URL}/posts${API_KEY}`, values);

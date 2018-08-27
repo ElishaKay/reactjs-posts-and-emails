@@ -1,12 +1,14 @@
 # FullstackReactCode
 
+<img src="img/adds-and-fetches-posts-with-redux-thunk.png">
+
 Based on the repos from two separate Udemy Courses by Stephen Grider:
 
 A) Course #1: https://www.udemy.com/react-redux/
 
 B) Course #2: https://www.udemy.com/node-with-react-fullstack-web-development
 
-<img src="img/adds-and-fetches-posts-with-redux-thunk.png">
+The project utilizes Google Oauth 2.0 via NPM's Passport Library. For more information on the Oauth side of this repo, you can view this <a href="https://github.com/ElishaKay/nodejs-passport-google-oauth2">earlier version of the repo</a> along with some of my notes and edits.
 
 <h3>Getting Started</h3>
 
@@ -34,3 +36,19 @@ export STRIPE_SECRET_KEY=get-from-stripe
 export SEND_GRID_KEY=get-from-sendgrid
 export REDIRECT_DOMAIN=localhost:3000
 ```
+
+<h4>Testing The SendGrid Webhooks API locally</h4>
+
+The project uses ngrok, which is listed as an npm package on the server. This allows sendgrid to send post requests to our local computer. Here's how to set it up:
+
+Step 1: Once the server is running, navigate within your browser to: http://127.0.0.1:4040/inspect/http
+
+You will see 2 links provided to you by ngrok (1 http and 1 https). Copy that link and follow step 2.
+
+Step 2: Within Sendgrid, <a href="https://app.sendgrid.com/settings/mail_settings">navigate to this screen</a>, and input the link that Ngrok provides you:
+
+<img src="img/ngrok.jpeg">
+
+Step 3: Press 'Test Your Integration'.
+
+Step 4: Back in your ngrok dashboard (http://127.0.0.1:4040/inspect/http), you'll see a post request that just came in from Sendgrid. Congrats, the communication has begun.

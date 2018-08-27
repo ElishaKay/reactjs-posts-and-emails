@@ -51,4 +51,8 @@ Step 2: Within Sendgrid, <a href="https://app.sendgrid.com/settings/mail_setting
 
 Step 3: Press 'Test Your Integration'.
 
-Step 4: Back in your ngrok dashboard (http://127.0.0.1:4040/inspect/http), you'll see a post request that just came in from Sendgrid. Congrats, the communication has begun.
+Step 4: Back in your ngrok dashboard (http://127.0.0.1:4040/inspect/http), you'll see a post request that just came in from Sendgrid. Congrats, the communication has begun. Press the save button on sendgrid (its a blue checkmark.)
+
+Step 5: When you push your app to heroku, be sure to replace the ngrok link with your heroku domain, and save changes.
+
+More info on this at <a href="https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/t/lecture/7607724?start=135">Udemy Course: Node with React. Section 12, Lecture 173.</a>
